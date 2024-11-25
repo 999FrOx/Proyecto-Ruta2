@@ -12,6 +12,7 @@ public class RutaVista {
     private JButton btAgregar;
     private JComboBox cbUnidades;
     private JButton quitarUnidadButton;
+    private JButton btGestUn;
     private List<Unidad> unidades;
 
     public static void main(String[] args) {
@@ -20,13 +21,14 @@ public class RutaVista {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(500, 500);
+        frame.setSize(450, 180);
         frame.setLocationRelativeTo(null);
-
     }
 
     public RutaVista() {
         unidades = new ArrayList<>();
+        cbUnidades.setVisible(false);
+        //agrega unidades a la lista
         btAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,7 +46,7 @@ public class RutaVista {
                 tfMatricula.setText("");
 
             }
-            //Agregar unidades para atender
+            //Agregar unidades para atender al Jcbbox
             public void agregarUn() {
                 if (!unidades.isEmpty()) {
                     Unidad ultUnidad = unidades.get(unidades.size() - 1);
@@ -52,7 +54,7 @@ public class RutaVista {
                 }
             }
         });
-        //Boton para quitar unidades
+        //Boton para quitar unidades de la lista
         quitarUnidadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,7 +78,7 @@ public class RutaVista {
                 }
             }
 
-            //Compara si el numero ingresado esta en el arreglo
+            //Compara si el numero ingresado esta en la lista y lo elimina
             private boolean eliminarUnidad(int numeroUnidad) {
                 for (Unidad unidad : unidades) {
                     if (unidad.getNoUnidad() == numeroUnidad) {
@@ -95,5 +97,14 @@ public class RutaVista {
             }
         });
 
+        btGestUn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RutaUnidad rutaUnidad = new RutaUnidad(cbUnidades);
+                cbUnidades.setVisible(true);
+                cbUnidades.setLocation(200,50);
+
+            }
+        });
     }
 }
