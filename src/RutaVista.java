@@ -21,7 +21,7 @@ public class RutaVista {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(450, 180);
+        frame.setSize(500, 400);
         frame.setLocationRelativeTo(null);
     }
 
@@ -102,8 +102,6 @@ public class RutaVista {
             public void actionPerformed(ActionEvent e) {
                 RutaUnidad rutaUnidad = new RutaUnidad(cbUnidades);
                 cbUnidades.setVisible(true);
-                cbUnidades.setLocation(200,50);
-
             }
         });
     }
