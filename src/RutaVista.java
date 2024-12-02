@@ -12,8 +12,10 @@ public class RutaVista {
     private JButton btAgregar;
     private JComboBox cbUnidades;
     private JButton quitarUnidadButton;
-    private JButton btGestUn;
+    private JButton infoUnidadButton;
+    private JButton gestionarUnidadButton;
     private List<Unidad> unidades;
+    private Unidad unidadSel;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("RutaVista");
@@ -21,13 +23,22 @@ public class RutaVista {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(500, 400);
+        frame.setSize(500, 250);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
     }
 
     public RutaVista() {
         unidades = new ArrayList<>();
-        cbUnidades.setVisible(false);
+        unidadSel = null;
+        cbUnidades.setVisible(true);
+        //Definir la unidad actual
+        cbUnidades.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                unidadSel = (Unidad) cbUnidades.getSelectedItem();
+            }
+        });
         //agrega unidades a la lista
         btAgregar.addActionListener(new ActionListener() {
             @Override
@@ -46,12 +57,26 @@ public class RutaVista {
                 tfMatricula.setText("");
 
             }
+
             //Agregar unidades para atender al Jcbbox
             public void agregarUn() {
                 if (!unidades.isEmpty()) {
                     Unidad ultUnidad = unidades.get(unidades.size() - 1);
                     cbUnidades.addItem(ultUnidad);
                 }
+            }
+        });
+        //Mosatrar info de la Unidad seleccionada
+        infoUnidadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Verificar si se ha elegido una unidad
+                if (unidadSel == null) {
+                    JOptionPane.showMessageDialog(null, "Por favor, seleccione una unidad.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                InfoUnidad infoUnidad = new InfoUnidad(unidadSel);
+                infoUnidad.setVisible(true);
             }
         });
         //Boton para quitar unidades de la lista
@@ -78,6 +103,7 @@ public class RutaVista {
                 }
             }
 
+
             //Compara si el numero ingresado esta en la lista y lo elimina
             private boolean eliminarUnidad(int numeroUnidad) {
                 for (Unidad unidad : unidades) {
@@ -97,12 +123,20 @@ public class RutaVista {
             }
         });
 
-        btGestUn.addActionListener(new ActionListener() {
+        gestionarUnidadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RutaUnidad rutaUnidad = new RutaUnidad(cbUnidades);
-                cbUnidades.setVisible(true);
+                unidadSel = (Unidad) cbUnidades.getSelectedItem();
+                if (unidadSel != null) {
+                    RutaUnidad rutaUnidad = new RutaUnidad(unidadSel);
+                    rutaUnidad.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor, seleccione una unidad.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
+    }
+    public String getUniadSeleccionada() {
+        return (String) cbUnidades.getSelectedItem();
     }
 }

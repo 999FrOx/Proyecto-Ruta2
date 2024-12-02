@@ -1,22 +1,25 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class PasajerosDialog extends JDialog {
+public class InfoUnidad extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField tfAbordan;
-    private JTextField tfBajan;
+    private JLabel lbUnidad;
+    private JLabel lbGanancia;
     private Unidad unidad;
-    private Pasajero pasajero;
 
-    public PasajerosDialog(Unidad unidad) {
+    RutaVista rutaVista = new RutaVista();
+    Pasajero pasajero = new Pasajero();
+
+    public InfoUnidad(Unidad unidad) {
         this.unidad = unidad;
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        setSize(300,200);
+        setSize(200,200);
         setLocationRelativeTo(null);
+
 
 
         buttonOK.addActionListener(new ActionListener() {
@@ -45,32 +48,11 @@ public class PasajerosDialog extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        mostrarDatos();
     }
 
     private void onOK() {
-        try {
-            int abordan = Integer.parseInt(tfAbordan.getText());
-            int bajan = Integer.parseInt(tfBajan.getText());
-
-            Pasajero pasajero = unidad.getPasajero(); // Obtener el pasajero asociado a la unidad
-
-            if (bajan > pasajero.getPasajerosAbordo()) {
-                JOptionPane.showMessageDialog(null, "No hay suficientes pasajeros para bajar.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            pasajero.bajarPasajeros(bajan); // Actualizar pasajeros que bajan
-
-            if (pasajero.getPasajerosAbordo() + abordan <= pasajero.getCapacidadUnidad()) {
-                pasajero.abordarPasajeros(abordan); // Actualizar pasajeros que abordan
-                double ganancia = pasajero.calcularCobro();
-                JOptionPane.showMessageDialog(null, "Ganancia registrada: $" + ganancia);
-            } else {
-                JOptionPane.showMessageDialog(null, "No hay espacio suficiente para que aborden todos los pasajeros.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Por favor, ingresa números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        // add your code here
         dispose();
     }
 
@@ -78,12 +60,18 @@ public class PasajerosDialog extends JDialog {
         // add your code here if necessary
         dispose();
     }
+    public void mostrarDatos(){
+        lbUnidad.setText("Unidad: " + unidad.getNoUnidad() + " - Matrícula: " + unidad.getMatricula());
+        lbGanancia.setText("Ganancias: $" + unidad.getGanancias());
+
+    }
 
     public static void main(String[] args) {
         Unidad unidad = new Unidad();
-        PasajerosDialog dialog = new PasajerosDialog(unidad);
+        InfoUnidad dialog = new InfoUnidad(unidad);
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
     }
+
 }
