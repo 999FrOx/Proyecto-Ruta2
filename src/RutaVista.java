@@ -14,7 +14,7 @@ public class RutaVista {
     private JButton quitarUnidadButton;
     private JButton infoUnidadButton;
     private JButton gestionarUnidadButton;
-    private List<Unidad> unidades;
+    private List<Unidad> unidades; //Lista de Unidades
     private Unidad unidadSel;
 
     public static void main(String[] args) {
@@ -31,8 +31,6 @@ public class RutaVista {
     public RutaVista() {
         unidades = new ArrayList<>();
         unidadSel = null;
-        cbUnidades.setVisible(true);
-        //Definir la unidad actual
         cbUnidades.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,15 +50,38 @@ public class RutaVista {
                 try {
                     unidad.setNoUnidad(Integer.parseInt(tfNoUnidad.getText()));
                     unidad.setMatricula(tfMatricula.getText());
-                    unidades.add(unidad);
-                    agregarUn();
-                    tfNoUnidad.setText("");
-                    tfMatricula.setText("");
-                } catch (NumberFormatException eNoU) {
-                    JOptionPane.showMessageDialog(null, "Ingrese un numero valido", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (tfNoUnidad == null) {
+                        JOptionPane.showMessageDialog(null, "Llene los datos", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    int numeroUnidadB= Integer.parseInt(tfNoUnidad.getText());
+                    boolean buscarUnidad = buscarUnidad(numeroUnidadB);
+
+                    if (buscarUnidad) {
+                        JOptionPane.showMessageDialog(null, "Esta Unidad ya existe." , "Error" , JOptionPane.ERROR_MESSAGE);
+                        tfNoUnidad.setText("");
+                        tfMatricula.setText("");
+                    } else {
+                        unidades.add(unidad);
+                        agregarUn();
+                        tfNoUnidad.setText("");
+                        tfMatricula.setText("");
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
                     tfNoUnidad.setText("");
                     tfMatricula.setText("");
                 }
+
+
+            }
+            private boolean buscarUnidad(int numeroUnidad) {
+                for (Unidad unidad : unidades) {
+                    if (unidad.getNoUnidad() == numeroUnidad) {
+                        return true;
+                    }
+                }
+                return false;
             }
 
             //Agregar unidades para atender al Jcbbox
@@ -107,7 +128,6 @@ public class RutaVista {
                     JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
-
 
             //Compara si el numero ingresado esta en la lista y lo elimina
             private boolean eliminarUnidad(int numeroUnidad) {
