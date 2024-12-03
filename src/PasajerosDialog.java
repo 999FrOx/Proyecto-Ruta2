@@ -63,7 +63,9 @@ public class PasajerosDialog extends JDialog {
 
             if (pasajero.getPasajerosAbordo() + abordan <= pasajero.getCapacidadUnidad()) {
                 pasajero.abordarPasajeros(abordan);
-                JOptionPane.showMessageDialog(null, "Ganancia registrada: $" + pasajero.getUnidad().getGanancias());
+                JOptionPane.showMessageDialog(null, "Ganancia registrada: $" + pasajero.getUnidad().getGanancias()+
+                        "\n Pasageros Abordo: " + pasajero.getPasajerosAbordo());
+
             } else {
                 JOptionPane.showMessageDialog(null, "No hay espacio suficiente para que aborden todos los pasajeros.", "Error", JOptionPane.ERROR_MESSAGE);
             }
