@@ -8,7 +8,7 @@ public class PasajerosDialog extends JDialog {
     private JTextField tfAbordan;
     private JTextField tfBajan;
     private Unidad unidad;
-    private Pasajero pasajero;
+    //private Pasajero pasajero;
 
     public PasajerosDialog(Unidad unidad) {
         this.unidad = unidad;
@@ -64,7 +64,7 @@ public class PasajerosDialog extends JDialog {
             if (pasajero.getPasajerosAbordo() + abordan <= pasajero.getCapacidadUnidad()) {
                 pasajero.abordarPasajeros(abordan);
                 JOptionPane.showMessageDialog(null, "Ganancia registrada: $" + pasajero.getUnidad().getGanancias()+
-                        "\n Pasageros Abordo: " + pasajero.getPasajerosAbordo());
+                        "\n Pasajeros Abordo: " + pasajero.getPasajerosAbordo());
 
             } else {
                 JOptionPane.showMessageDialog(null, "No hay espacio suficiente para que aborden todos los pasajeros.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -79,7 +79,7 @@ public class PasajerosDialog extends JDialog {
         // add your code here if necessary
         dispose();
     }
-
+    //Panel para mantener la unidad seleccionada
     public static void main(String[] args) {
         Unidad unidad = new Unidad();
         PasajerosDialog dialog = new PasajerosDialog(unidad);

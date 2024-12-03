@@ -17,6 +17,7 @@ public class RutaVista {
     private List<Unidad> unidades; //Lista de Unidades
     private Unidad unidadSel;
 
+    //Configuracion del Frame Principal
     public static void main(String[] args) {
         JFrame frame = new JFrame("RutaVista");
         frame.setContentPane(new RutaVista().pPrincipal);
@@ -31,6 +32,7 @@ public class RutaVista {
     public RutaVista() {
         unidades = new ArrayList<>();
         unidadSel = null;
+        //Guarda la unidad selecionada en el JComboBox
         cbUnidades.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,6 +49,7 @@ public class RutaVista {
                     JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
+                //verifica que la unidad no exista
                 try {
                     unidad.setNoUnidad(Integer.parseInt(tfNoUnidad.getText()));
                     unidad.setMatricula(tfMatricula.getText());
@@ -75,6 +78,7 @@ public class RutaVista {
 
 
             }
+            //metodo para verificar si el numero de unidad existe en la lista
             private boolean buscarUnidad(int numeroUnidad) {
                 for (Unidad unidad : unidades) {
                     if (unidad.getNoUnidad() == numeroUnidad) {
@@ -147,7 +151,7 @@ public class RutaVista {
                 }
             }
         });
-
+        //Abre el mapa de paradas
         gestionarUnidadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -161,7 +165,5 @@ public class RutaVista {
             }
         });
     }
-    public String getUniadSeleccionada() {
-        return (String) cbUnidades.getSelectedItem();
-    }
+
 }

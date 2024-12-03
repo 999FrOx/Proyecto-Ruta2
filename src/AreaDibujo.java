@@ -140,6 +140,7 @@ public class AreaDibujo extends JPanel implements MouseListener {
         }
         return y;
     }
+    //Metodos abstractos del Mouse Listenerer
     @Override
     public void mousePressed(MouseEvent e) {}
     @Override

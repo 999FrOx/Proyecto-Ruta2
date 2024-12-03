@@ -7,10 +7,7 @@ public class InfoUnidad extends JDialog {
     private JLabel lbUnidad;
     private JLabel lbGanancia;
     private Unidad unidad;
-
-    RutaVista rutaVista = new RutaVista();
-    Pasajero pasajero = new Pasajero();
-
+    //confg del Jdialog
     public InfoUnidad(Unidad unidad) {
         this.unidad = unidad;
         setContentPane(contentPane);
@@ -18,8 +15,6 @@ public class InfoUnidad extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
         setSize(250,130);
         setLocationRelativeTo(null);
-
-
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -34,13 +29,12 @@ public class InfoUnidad extends JDialog {
         // add your code here
         dispose();
     }
-
+    //metodo para mosrtrar informacion en la parada
     public void mostrarDatos(){
         lbUnidad.setText("Unidad: " + unidad.getNoUnidad() + " - Matrícula: " + unidad.getMatricula());
         lbGanancia.setText("Ganancias: $" + unidad.getGanancias());
 
     }
-
     public static void main(String[] args) {
         Unidad unidad = new Unidad();
         InfoUnidad dialog = new InfoUnidad(unidad);
