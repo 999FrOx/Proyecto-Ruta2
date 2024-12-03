@@ -1,12 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class RutaUnidad extends JFrame {
     private JLabel lbUnidad;
+    private JButton OK;
     private Unidad unidad;
     public RutaUnidad(Unidad unidad){
         super("Rutas de la unidad");
-        setSize(600,600);
+        setSize(560,600);
         setLocationRelativeTo(null);
         setLayout(null);
         setResizable(false);
@@ -21,6 +24,16 @@ public class RutaUnidad extends JFrame {
         add(lbUnidad);
         PasajerosDialog pasajerosDialog = new PasajerosDialog(unidad);
 
+        OK = new JButton("Ok");
+        OK.setBounds(160,520,200,20);
+        OK.setFont(new Font("Arial", Font.BOLD,18));
+        add(OK);
+        OK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
 
     }
 }

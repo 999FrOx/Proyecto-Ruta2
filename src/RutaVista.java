@@ -23,7 +23,7 @@ public class RutaVista {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(500, 250);
+        frame.setSize(500, 300);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
     }
@@ -43,19 +43,24 @@ public class RutaVista {
         btAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 Unidad unidad = new Unidad();
+                //Verifica si los campos no estan vacios
                 if (tfNoUnidad.getText().isEmpty() || tfMatricula.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                unidad.setNoUnidad(Integer.parseInt(tfNoUnidad.getText()));
-                unidad.setMatricula(tfMatricula.getText());
-                unidades.add(unidad);
-                agregarUn();
-                tfNoUnidad.setText("");
-                tfMatricula.setText("");
-
+                try {
+                    unidad.setNoUnidad(Integer.parseInt(tfNoUnidad.getText()));
+                    unidad.setMatricula(tfMatricula.getText());
+                    unidades.add(unidad);
+                    agregarUn();
+                    tfNoUnidad.setText("");
+                    tfMatricula.setText("");
+                } catch (NumberFormatException eNoU) {
+                    JOptionPane.showMessageDialog(null, "Ingrese un numero valido", "Error", JOptionPane.ERROR_MESSAGE);
+                    tfNoUnidad.setText("");
+                    tfMatricula.setText("");
+                }
             }
 
             //Agregar unidades para atender al Jcbbox

@@ -62,9 +62,9 @@ private Unidad unidad;
 
     public void abordarPasajeros(int pasAb) {
         if (pasajerosAbordo + pasAb <= capacidadUnidad) {
-            this.pasAb = pasAb;       // Actualizar el número de pasajeros que abordan
-            pasajerosAbordo += pasAb; // Incrementar los pasajeros a bordo
-            calcularCobro();          // Calcular y acumular la ganancia
+            this.pasAb = pasAb;
+            pasajerosAbordo += pasAb;
+            calcularCobro();
             System.out.println(pasAb + " pasajeros han abordado.");
         } else {
             System.out.println("No hay suficiente espacio para que aborden todos los pasajeros.");
@@ -73,8 +73,8 @@ private Unidad unidad;
 
     public void bajarPasajeros(int pasBaj) {
         if (pasajerosAbordo - pasBaj >= 0) {
-            this.pasBaj = pasBaj;      // Actualizar el número de pasajeros que bajan
-            pasajerosAbordo -= pasBaj; // Reducir los pasajeros a bordo
+            this.pasBaj = pasBaj;
+            pasajerosAbordo -= pasBaj;
             System.out.println(pasBaj + " pasajeros han bajado.");
         } else {
             System.out.println("No puedes bajar más pasajeros de los que hay!!!");
@@ -82,9 +82,9 @@ private Unidad unidad;
     }
 
     public double calcularCobro() {
-        double cobro = pasAb * 8; // Calcular cobro para los pasajeros que abordan
-        //ganancia += cobro;       // Sumar al total de ganancias
-        if (unidad != null) {    // Verificar si está asociada a una unidad
+        double cobro = pasAb * 8;
+         ganancia += cobro;
+        if (unidad != null) {
             unidad.agregarGanancias(cobro);
         }
         return cobro;

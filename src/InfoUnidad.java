@@ -4,7 +4,6 @@ import java.awt.event.*;
 public class InfoUnidad extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
-    private JButton buttonCancel;
     private JLabel lbUnidad;
     private JLabel lbGanancia;
     private Unidad unidad;
@@ -17,7 +16,7 @@ public class InfoUnidad extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        setSize(200,200);
+        setSize(250,130);
         setLocationRelativeTo(null);
 
 
@@ -28,26 +27,6 @@ public class InfoUnidad extends JDialog {
             }
         });
 
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         mostrarDatos();
     }
 
@@ -56,10 +35,6 @@ public class InfoUnidad extends JDialog {
         dispose();
     }
 
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
-    }
     public void mostrarDatos(){
         lbUnidad.setText("Unidad: " + unidad.getNoUnidad() + " - Matrícula: " + unidad.getMatricula());
         lbGanancia.setText("Ganancias: $" + unidad.getGanancias());

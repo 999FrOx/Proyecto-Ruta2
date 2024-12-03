@@ -52,19 +52,18 @@ public class PasajerosDialog extends JDialog {
             int abordan = Integer.parseInt(tfAbordan.getText());
             int bajan = Integer.parseInt(tfBajan.getText());
 
-            Pasajero pasajero = unidad.getPasajero(); // Obtener el pasajero asociado a la unidad
+            Pasajero pasajero = unidad.getPasajero();
 
             if (bajan > pasajero.getPasajerosAbordo()) {
                 JOptionPane.showMessageDialog(null, "No hay suficientes pasajeros para bajar.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            pasajero.bajarPasajeros(bajan); // Actualizar pasajeros que bajan
+            pasajero.bajarPasajeros(bajan);
 
             if (pasajero.getPasajerosAbordo() + abordan <= pasajero.getCapacidadUnidad()) {
-                pasajero.abordarPasajeros(abordan); // Actualizar pasajeros que abordan
-                double ganancia = pasajero.calcularCobro();
-                JOptionPane.showMessageDialog(null, "Ganancia registrada: $" + ganancia);
+                pasajero.abordarPasajeros(abordan);
+                JOptionPane.showMessageDialog(null, "Ganancia registrada: $" + pasajero.getUnidad().getGanancias());
             } else {
                 JOptionPane.showMessageDialog(null, "No hay espacio suficiente para que aborden todos los pasajeros.", "Error", JOptionPane.ERROR_MESSAGE);
             }

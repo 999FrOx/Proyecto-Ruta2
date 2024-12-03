@@ -15,65 +15,65 @@ public class AreaDibujo extends JPanel implements MouseListener {
     }
     public void paint(Graphics g){
         super.paint(g);
-        // Parada Base
+        // Parada Base Teziutlán
         g.setColor(Color.DARK_GRAY);
         g.fillRect(90, 20, 100, 40);
         g.setColor(Color.WHITE);
-        g.drawString("Base Teziutlán", 100, 45);
+        g.drawString("1.Base Teziutlán", 95, 45);
 
-        // Primera parada
+        // Parada Guadalupano
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(90, 100, 100, 40);
         g.setColor(Color.BLACK);
-        g.drawString("Guadalupano", 100, 125);
+        g.drawString("2.Guadalupano", 100, 125);
 
-        // Segunda parada
+        // Parada Cinepolis
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(90, 180, 100, 40);
         g.setColor(Color.BLACK);
-        g.drawString("Cinepolis", 115, 205);
+        g.drawString("3.Cinepolis", 105, 205);
 
-        // Tercera parada
+        // Parada Aurrera
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(90, 260, 100, 40);
         g.setColor(Color.BLACK);
-        g.drawString("Aurrera", 120, 285);
+        g.drawString("4.Aurrera", 115, 285);
 
-        // Cuarta parada
+        // Parada La Misma Idea
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(90, 340, 100, 40);
         g.setColor(Color.BLACK);
-        g.drawString("La Misma Idea", 100, 365);
+        g.drawString("5.La Misma Idea", 95, 365);
 
-        // Primera parada derecha
+        // Parada Valle Dorado
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(210, 20, 100, 40);
         g.setColor(Color.BLACK);
-        g.drawString("Valle Dorado", 220, 45);
+        g.drawString("6.Valle Dorado", 220, 45);
 
-        // Segunda parada derecha
+        // Parada San Diego
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(210, 100, 100, 40);
         g.setColor(Color.BLACK);
-        g.drawString("San Diego", 230, 125);
+        g.drawString("7.San Diego", 230, 125);
 
-        // Tercera parada derecha
+        // Parada Puente S.Diego
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(210, 180, 100, 40);
         g.setColor(Color.BLACK);
-        g.drawString("Puente S.Diego", 220, 205);
+        g.drawString("8.Puente S.Diego", 212, 205);
 
-        // Cuarta parada derecha
+        // Parada Mexcal
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(210, 260, 100, 40);
         g.setColor(Color.BLACK);
-        g.drawString("Mexcal", 240, 285);
+        g.drawString("9.Mexcal", 240, 285);
 
-        // Última parada derecha
+        // Parada ITST
         g.setColor(Color.DARK_GRAY);
         g.fillRect(210, 340, 100, 40);
         g.setColor(Color.WHITE);
-        g.drawString("ITST", 250, 365);
+        g.drawString("10.ITST", 240, 365);
     }
     public void MostDialog(){
         PasajerosDialog pasajerosDialog = new PasajerosDialog(unidad);
@@ -86,7 +86,7 @@ public class AreaDibujo extends JPanel implements MouseListener {
         int y = getY(e, x);
 
 
-        // Coordenadas del sexto rectángulo (columna derecha)
+        // Coordenadas del sexto rectángulo
         if (x >= 210 && x <= 310 && y >= 20 && y <= 60) {
             MostDialog();
         }
@@ -115,7 +115,7 @@ public class AreaDibujo extends JPanel implements MouseListener {
     private  int getY(MouseEvent e, int x) {
         int y = e.getY();
         Pasajero pasajero = new Pasajero();
-        //Coordenadas Base: 90,20,100,40
+        //Coordenadas Base
         if (x >=90 && x <=190 && y>=20 && y<=60){
             MostDialog();
         }
